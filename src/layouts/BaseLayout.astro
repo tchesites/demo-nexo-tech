@@ -1,0 +1,131 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { negocio, servicos } from '../data/negocio.js';
+import { url } from '../utils/url.js';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description =
+    'Troca de tela a partir de R$ 149, bateria a partir de R$ 120 e conector a partir de R$ 100, com 90 dias de garantia e tele-busca grátis em Canoas, Porto Alegre e região.',
+} = Astro.props;
+
+const siteTitle = `${title} · ${negocio.nome}`;
+const canonicalPath = Astro.url.pathname.endsWith('/')
+  ? Astro.url.pathname
+  : `${Astro.url.pathname}/`;
+const canonical = new URL(canonicalPath, Astro.site);
+const ogImage = new URL(url('/og-image.png'), Astro.site);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MobilePhoneStore',
+  name: negocio.nome,
+  alternateName: 'Nexo Tech — Assistência Técnica',
+  description:
+    'Assistência técnica de celulares em Canoas/RS. Troca de tela, bateria e conector com 90 dias de garantia, conserto no mesmo dia e tele-busca em Porto Alegre, Canoas e região.',
+  url: canonical.href,
+  image: ogImage.href,
+  priceRange: 'R$ 100+',
+  currenciesAccepted: 'BRL',
+  telephone: '+5551900000000',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: negocio.endereco,
+    addressLocality: negocio.cidade,
+    addressRegion: negocio.estado,
+    postalCode: negocio.cep,
+    addressCountry: 'BR',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Canoas' },
+    { '@type': 'City', name: 'Porto Alegre' },
+  ],
+  sameAs: [negocio.instagramUrl, negocio.facebookUrl],
+  knowsAbout: [
+    'Troca de tela de celular',
+    'Troca de bateria de celular',
+    'Troca de conector de carga',
+    'Conserto de celular',
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Serviços da Nexo Tech',
+    itemListElement: servicos.map((servico) => ({
+      '@type': 'Offer',
+      priceSpecification: {
+        '@type': 'PriceSpecification',
+        priceCurrency: 'BRL',
+        minPrice: servico.preco.toFixed(2),
+      },
+      itemOffered: {
+        '@type': 'Service',
+        name: servico.nome,
+        description: servico.descricao,
+      },
+    })),
+  },
+};
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Tchê Sites" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#04070d" />
+    <meta name="geo.region" content="BR-RS" />
+    <meta name="geo.placename" content="Canoas" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
+    <link rel="apple-touch-icon" href={url('/apple-touch-icon.png')} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content={negocio.nome} />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Nexo Tech — assistência técnica de celulares em Canoas"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={siteTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,75..125,400..900;1,75..125,400..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>{siteTitle}</title>
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <Header />
+    <main id="conteudo">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

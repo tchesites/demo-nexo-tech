@@ -1,0 +1,253 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  color: inherit;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 108%;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+::selection {
+  background: var(--cyan);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.container {
+  width: calc(100% - var(--gutter) * 2);
+  max-width: var(--container);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--section);
+}
+
+.section-head {
+  max-width: 52rem;
+  margin-bottom: clamp(2.25rem, 5vw, 3.75rem);
+}
+
+.section-head h2 {
+  font-size: clamp(2.1rem, 4.6vw, 3.6rem);
+  max-width: 20ch;
+}
+
+.section-head p {
+  margin-top: 1.1rem;
+  max-width: 58ch;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 3.15rem;
+  padding: 0.78rem 1.3rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 650;
+  line-height: 1.2;
+  text-align: center;
+  transition:
+    background-color var(--t),
+    border-color var(--t),
+    color var(--t),
+    transform var(--t);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn svg {
+  flex: 0 0 auto;
+}
+
+.btn--primary {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: #031019;
+  box-shadow: 0 10px 34px rgba(36, 215, 255, 0.16);
+}
+
+.btn--primary:hover {
+  background: var(--cyan-bright);
+  border-color: var(--cyan-bright);
+}
+
+.btn--ghost {
+  border-color: var(--line-strong);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text);
+}
+
+.btn--ghost:hover {
+  border-color: var(--cyan);
+  background: rgba(36, 215, 255, 0.08);
+  color: var(--cyan-bright);
+}
+
+.btn--whatsapp {
+  border-color: rgba(37, 211, 102, 0.38);
+  background: rgba(37, 211, 102, 0.05);
+  color: #b8ffd1;
+}
+
+.btn--whatsapp:hover {
+  border-color: var(--green);
+  background: rgba(37, 211, 102, 0.12);
+  color: #e2ffec;
+}
+
+.btn--ink {
+  background: var(--paper-ink);
+  border-color: var(--paper-ink);
+  color: var(--paper);
+}
+
+.btn--ink:hover {
+  background: #12283a;
+  border-color: #12283a;
+}
+
+.btn--compact {
+  min-height: 2.7rem;
+  padding: 0.55rem 1rem;
+  font-size: 0.88rem;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  transition: color var(--t), gap var(--t);
+}
+
+.link:hover {
+  color: var(--cyan-bright);
+  gap: 0.65rem;
+}
+
+.fine {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  background: var(--cyan);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

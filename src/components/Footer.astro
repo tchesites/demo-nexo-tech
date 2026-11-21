@@ -1,0 +1,262 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { negocio, whatsappLink } from '../data/negocio.js';
+
+const ano = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <Logo />
+      <p>
+        Conserto de celular com peça de qualidade, 90 dias de garantia e
+        tele-busca em Canoas, Porto Alegre e região.
+      </p>
+      <div class="footer__social">
+        <a
+          href={negocio.instagramUrl}
+          target="_blank"
+          rel="noopener"
+          aria-label="Instagram da Nexo Tech"
+        >
+          <Icon name="instagram" size={18} />
+        </a>
+        <a
+          href={negocio.facebookUrl}
+          target="_blank"
+          rel="noopener"
+          aria-label="Facebook da Nexo Tech"
+        >
+          <Icon name="facebook" size={18} />
+        </a>
+        <a
+          href={whatsappLink()}
+          target="_blank"
+          rel="noopener"
+          aria-label="WhatsApp da Nexo Tech"
+        >
+          <Icon name="whatsapp" size={18} />
+        </a>
+      </div>
+    </div>
+
+    <div class="footer__col">
+      <h2>Serviços</h2>
+      <ul>
+        <li><a href="#servicos">Troca de tela</a></li>
+        <li><a href="#servicos">Troca de bateria</a></li>
+        <li><a href="#servicos">Troca de conector</a></li>
+        <li><a href="#servicos">Outros serviços</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h2>Contato</h2>
+      <ul>
+        <li>
+          <a href={negocio.telefoneLink}>{negocio.telefoneDisplay}</a>
+        </li>
+        <li>
+          <a href={whatsappLink()} target="_blank" rel="noopener">
+            WhatsApp
+          </a>
+        </li>
+        <li>
+          <a href={negocio.instagramUrl} target="_blank" rel="noopener">
+            Instagram {negocio.instagram}
+          </a>
+        </li>
+        <li>
+          <a href={negocio.facebookUrl} target="_blank" rel="noopener">
+            Facebook
+          </a>
+        </li>
+        <li><a href="#como-funciona">Como funciona</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h2>Endereço</h2>
+      <address>
+        {negocio.endereco}<br />
+        {negocio.bairro}<br />
+        {negocio.cidade}/{negocio.estado} · {negocio.cep}
+      </address>
+      <a
+        class="footer__maps"
+        href={negocio.googleMapsUrl}
+        target="_blank"
+        rel="noopener"
+      >
+        Abrir no Google Maps
+        <Icon name="arrow" size={14} />
+      </a>
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <p>© {ano} {negocio.nome}.</p>
+    <p class="footer__disclaimer">
+      Valores de referência. O orçamento final é confirmado no atendimento.
+    </p>
+    <p>
+      Site por
+      <a href="https://tchesites.com.br" target="_blank" rel="noopener">Tchê Sites</a>
+      · Projeto demonstrativo
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding-top: clamp(3rem, 6vw, 4.5rem);
+    border-top: 1px solid var(--line);
+    background: #03060b;
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 1.55fr 0.85fr 1fr 1.15fr;
+    gap: 2.5rem;
+    padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .footer__brand p {
+    max-width: 30ch;
+    margin-top: 1.1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .footer__social {
+    display: flex;
+    gap: 0.55rem;
+    margin-top: 1.25rem;
+  }
+
+  .footer__social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    color: var(--muted);
+    transition:
+      border-color var(--t),
+      color var(--t),
+      background-color var(--t);
+  }
+
+  .footer__social a:hover {
+    border-color: var(--cyan);
+    background: rgba(36, 215, 255, 0.07);
+    color: var(--cyan-bright);
+  }
+
+  .footer__col h2 {
+    margin-bottom: 1rem;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-stretch: normal;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .footer__col ul {
+    display: grid;
+    gap: 0.55rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .footer__col a {
+    transition: color var(--t);
+  }
+
+  .footer__col a:hover {
+    color: var(--cyan-bright);
+  }
+
+  .footer__col address {
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-style: normal;
+    line-height: 1.7;
+  }
+
+  .footer__maps {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.9rem;
+    color: var(--cyan);
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .footer__maps:hover {
+    color: var(--cyan-bright);
+  }
+
+  .footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    padding-block: 1.3rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.75rem;
+  }
+
+  .footer__bottom a {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .footer__bottom a:hover {
+    color: var(--cyan-bright);
+  }
+
+  .footer__disclaimer {
+    max-width: 42ch;
+  }
+
+  @media (max-width: 64rem) {
+    .footer__grid {
+      grid-template-columns: 1.4fr 1fr 1fr;
+    }
+
+    .footer__brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .footer__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .footer__brand {
+      grid-column: 1 / -1;
+    }
+
+    .footer__bottom {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 26rem) {
+    .footer__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

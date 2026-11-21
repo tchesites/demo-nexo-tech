@@ -1,0 +1,751 @@
+---
+import Icon from './Icon.astro';
+import { negocio, servicos } from '../data/negocio.js';
+
+const opcoes = servicos.map((servico) => ({
+  ...servico,
+  rotulo: servico.nome
+    .replace('Troca de ', '')
+    .replace(/^./, (letra) => letra.toUpperCase()),
+}));
+---
+
+<div class="quote" id="orcamento" data-quote-card data-whatsapp={negocio.whatsappUrl}>
+  <div class="quote__top">
+    <span class="quote__title">Ficha de entrada</span>
+    <span class="quote__status">
+      <span class="quote__dot" aria-hidden="true"></span>
+      orçamento sem compromisso
+    </span>
+  </div>
+
+  <div class="quote__diagram" data-part="tela">
+    <svg viewBox="0 0 400 210" class="diagram" aria-hidden="true" focusable="false">
+      <defs>
+        <pattern id="ds-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M20 0H0V20" fill="none" stroke="rgba(139,195,245,.07)" stroke-width="1"></path>
+        </pattern>
+        <linearGradient id="ds-screen" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#24d7ff" stop-opacity=".26"></stop>
+          <stop offset="1" stop-color="#0b7dff" stop-opacity=".08"></stop>
+        </linearGradient>
+        <filter id="ds-glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="4" result="blur"></feGaussianBlur>
+          <feMerge>
+            <feMergeNode in="blur"></feMergeNode>
+            <feMergeNode in="SourceGraphic"></feMergeNode>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <rect width="400" height="210" fill="url(#ds-grid)"></rect>
+      <path d="M16 30V16h14M370 16h14v14M16 180v14h14M384 180v14h-14" class="corner-marks" fill="none"></path>
+
+      <rect x="156" y="10" width="88" height="190" rx="16" class="phone-frame"></rect>
+      <rect x="163" y="22" width="74" height="152" rx="8" class="part part--tela"></rect>
+      <path d="M168 30l14 24-9 22 16 26-6 20 14 18" class="crack"></path>
+      <rect x="172" y="82" width="56" height="44" rx="6" class="part part--bateria"></rect>
+      <path d="M200 89l-7 12h6l-2 12 10-16h-7l3-8Z" class="bolt"></path>
+      <rect x="182" y="184" width="36" height="8" rx="4" class="part part--conector"></rect>
+      <rect x="190" y="13" width="20" height="4" rx="2" class="phone-notch"></rect>
+      <circle cx="200" cy="196" r="1.4" class="phone-dot"></circle>
+
+      <g class="callout callout--tela">
+        <path d="M62 58h52l32 24"></path>
+        <circle cx="62" cy="58" r="2.2"></circle>
+        <text x="22" y="62">TELA</text>
+      </g>
+      <g class="callout callout--bateria">
+        <path d="M296 104h-28l-34 4"></path>
+        <circle cx="296" cy="104" r="2.2"></circle>
+        <text x="312" y="108">BATERIA</text>
+      </g>
+      <g class="callout callout--conector">
+        <path d="M70 186h46l58 2"></path>
+        <circle cx="70" cy="186" r="2.2"></circle>
+        <text x="22" y="190">CONECTOR</text>
+      </g>
+
+      <line class="scan" x1="163" y1="22" x2="237" y2="22"></line>
+    </svg>
+  </div>
+
+  <fieldset class="quote__fieldset">
+    <legend class="quote__legend">O que está acontecendo?</legend>
+    <div class="quote__options">
+      {opcoes.map((opcao, indice) => (
+        <div class="quote__option">
+          <input
+            class="sr-only"
+            type="radio"
+            name="problema"
+            id={`problema-${opcao.id}`}
+            value={opcao.id}
+            data-label={opcao.mensagem}
+            data-price-label={`R$ ${opcao.preco}`}
+            data-has-price="true"
+            checked={indice === 0}
+          />
+          <label for={`problema-${opcao.id}`}>
+            <span class="quote__option-main">
+              <span class="quote__option-icon"><Icon name={opcao.icone} size={21} /></span>
+              <span>{opcao.rotulo}</span>
+            </span>
+            <small>a partir de R$ {opcao.preco}</small>
+          </label>
+        </div>
+      ))}
+
+      <div class="quote__option">
+        <input
+          class="sr-only"
+          type="radio"
+          name="problema"
+          id="problema-outro"
+          value="outro"
+          data-label="outro problema"
+          data-price-label="Sob orçamento"
+          data-has-price="false"
+        />
+        <label for="problema-outro">
+          <span class="quote__option-main">
+            <span class="quote__option-icon"><Icon name="spark" size={21} /></span>
+            <span>Outro</span>
+          </span>
+          <small>sob orçamento</small>
+        </label>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="quote__field">
+    <label for="modelo">Modelo do aparelho <span>opcional</span></label>
+    <input
+      id="modelo"
+      name="modelo"
+      type="text"
+      placeholder="Ex.: iPhone 13, Galaxy S22"
+      autocomplete="off"
+      maxlength="40"
+    />
+  </div>
+
+  <div class="quote__estimate" data-estimate>
+    <div class="quote__estimate-label">
+      <span>Estimativa inicial</span>
+      <small data-price-note>a partir de</small>
+    </div>
+    <strong data-price aria-live="polite">R$ 149</strong>
+  </div>
+
+  <a
+    class="btn btn--primary quote__cta"
+    href={negocio.whatsappUrl}
+    target="_blank"
+    rel="noopener"
+    data-cta
+  >
+    <Icon name="whatsapp" size={19} />
+    Pedir orçamento no WhatsApp
+  </a>
+
+  <div class="quote__bottom">
+    <button class="quote__copy" type="button" data-copy>
+      <Icon name="copy" size={15} />
+      Copiar resumo
+    </button>
+    <span class="quote__note">O valor final é confirmado no atendimento.</span>
+  </div>
+
+  <p class="quote__feedback" data-feedback role="status" aria-live="polite"></p>
+</div>
+
+<style>
+  .quote {
+    position: relative;
+    scroll-margin-top: 6.5rem;
+    overflow: hidden;
+    border: 1px solid var(--line-strong);
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(14, 28, 42, 0.94), rgba(7, 13, 22, 0.98));
+    box-shadow: var(--sombra), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .quote::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    opacity: 0.7;
+  }
+
+  .quote__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.35rem 1rem;
+    padding: 0.85rem 1.15rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .quote__title {
+    font-family: var(--font-display);
+    font-size: 0.98rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .quote__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--muted);
+    font-size: 0.68rem;
+  }
+
+  .quote__dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan);
+  }
+
+  .quote__diagram {
+    padding: 0.4rem 0.9rem 0;
+    border-bottom: 1px solid var(--line);
+    background: radial-gradient(60% 80% at 50% 20%, rgba(11, 125, 255, 0.12), transparent 70%);
+  }
+
+  .diagram {
+    width: 100%;
+    height: auto;
+    max-height: 190px;
+  }
+
+  .corner-marks {
+    stroke: rgba(139, 195, 245, 0.25);
+    stroke-width: 1;
+  }
+
+  .phone-frame {
+    fill: rgba(4, 7, 13, 0.7);
+    stroke: var(--line-strong);
+    stroke-width: 1.2;
+    transition: stroke-dasharray var(--t);
+  }
+
+  .phone-notch {
+    fill: var(--line-strong);
+  }
+
+  .phone-dot {
+    fill: var(--muted);
+  }
+
+  .part {
+    transition: opacity 0.2s var(--ease), stroke 0.2s var(--ease), fill 0.2s var(--ease);
+  }
+
+  .part--tela {
+    fill: url(#ds-screen);
+    stroke: rgba(36, 215, 255, 0.45);
+    stroke-width: 1;
+    opacity: 0.65;
+  }
+
+  .part--bateria {
+    fill: rgba(4, 7, 13, 0.55);
+    stroke: var(--cyan);
+    stroke-width: 1.2;
+    opacity: 0.5;
+  }
+
+  .part--conector {
+    fill: rgba(36, 215, 255, 0.7);
+    stroke: none;
+    opacity: 0.45;
+  }
+
+  .crack {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.45);
+    stroke-width: 0.9;
+    opacity: 0.75;
+  }
+
+  .bolt {
+    fill: none;
+    stroke: var(--cyan-bright);
+    stroke-width: 1.3;
+    opacity: 0.8;
+  }
+
+  .callout {
+    opacity: 0.7;
+    transition: opacity 0.2s var(--ease);
+  }
+
+  .callout path {
+    fill: none;
+    stroke: rgba(139, 195, 245, 0.28);
+    stroke-width: 1;
+    transition: stroke 0.2s var(--ease);
+  }
+
+  .callout circle {
+    fill: rgba(139, 195, 245, 0.45);
+    transition: fill 0.2s var(--ease);
+  }
+
+  .callout text {
+    fill: var(--muted);
+    font-family: var(--font-body);
+    font-size: 8.5px;
+    font-weight: 600;
+    letter-spacing: 1.3px;
+    transition: fill 0.2s var(--ease);
+  }
+
+  .scan {
+    stroke: var(--cyan-bright);
+    stroke-width: 1.5;
+    opacity: 0;
+    filter: url(#ds-glow);
+    animation: scan 1.3s var(--ease) 0.4s 1 both;
+  }
+
+  @keyframes scan {
+    0% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    15% {
+      opacity: 0.9;
+    }
+    80% {
+      opacity: 0.9;
+    }
+    100% {
+      transform: translateY(150px);
+      opacity: 0;
+    }
+  }
+
+  .quote__diagram[data-part='tela'] .part--tela {
+    opacity: 1;
+    stroke: var(--cyan-bright);
+    filter: url(#ds-glow);
+  }
+
+  .quote__diagram[data-part='tela'] .part--bateria,
+  .quote__diagram[data-part='tela'] .part--conector {
+    opacity: 0.22;
+  }
+
+  .quote__diagram[data-part='tela'] .callout--tela {
+    opacity: 1;
+  }
+
+  .quote__diagram[data-part='tela'] .callout--tela text {
+    fill: var(--cyan-bright);
+  }
+
+  .quote__diagram[data-part='tela'] .callout--tela path,
+  .quote__diagram[data-part='tela'] .callout--tela circle {
+    stroke: var(--cyan);
+    fill: var(--cyan);
+  }
+
+  .quote__diagram[data-part='bateria'] .part--bateria {
+    opacity: 1;
+    stroke: var(--cyan-bright);
+    fill: rgba(36, 215, 255, 0.12);
+    filter: url(#ds-glow);
+  }
+
+  .quote__diagram[data-part='bateria'] .part--tela,
+  .quote__diagram[data-part='bateria'] .part--conector {
+    opacity: 0.2;
+  }
+
+  .quote__diagram[data-part='bateria'] .callout--bateria {
+    opacity: 1;
+  }
+
+  .quote__diagram[data-part='bateria'] .callout--bateria text {
+    fill: var(--cyan-bright);
+  }
+
+  .quote__diagram[data-part='bateria'] .callout--bateria path,
+  .quote__diagram[data-part='bateria'] .callout--bateria circle {
+    stroke: var(--cyan);
+    fill: var(--cyan);
+  }
+
+  .quote__diagram[data-part='conector'] .part--conector {
+    opacity: 1;
+    fill: var(--cyan-bright);
+    filter: url(#ds-glow);
+  }
+
+  .quote__diagram[data-part='conector'] .part--tela,
+  .quote__diagram[data-part='conector'] .part--bateria {
+    opacity: 0.2;
+  }
+
+  .quote__diagram[data-part='conector'] .callout--conector {
+    opacity: 1;
+  }
+
+  .quote__diagram[data-part='conector'] .callout--conector text {
+    fill: var(--cyan-bright);
+  }
+
+  .quote__diagram[data-part='conector'] .callout--conector path,
+  .quote__diagram[data-part='conector'] .callout--conector circle {
+    stroke: var(--cyan);
+    fill: var(--cyan);
+  }
+
+  .quote__diagram[data-part='outro'] .phone-frame {
+    stroke-dasharray: 5 4;
+  }
+
+  .quote__diagram[data-part='outro'] .part {
+    opacity: 0.75;
+  }
+
+  .quote__fieldset {
+    margin: 0;
+    padding: 1rem 1.15rem 0;
+    border: 0;
+  }
+
+  .quote__legend {
+    margin-bottom: 0.6rem;
+    padding: 0;
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+
+  .quote__options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .quote__option label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.18rem;
+    min-height: 72px;
+    padding: 0.65rem 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.015);
+    cursor: pointer;
+    transition:
+      border-color var(--t),
+      background-color var(--t),
+      box-shadow var(--t);
+  }
+
+  .quote__option label:hover {
+    border-color: var(--line-strong);
+    background: rgba(36, 215, 255, 0.04);
+  }
+
+  .quote__option-main {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  .quote__option-icon {
+    display: inline-flex;
+    flex: 0 0 auto;
+    color: var(--cyan);
+  }
+
+  .quote__option small {
+    color: var(--muted);
+    font-size: 0.68rem;
+    line-height: 1.3;
+  }
+
+  .quote__option input:checked + label {
+    border-color: var(--cyan);
+    background: rgba(36, 215, 255, 0.09);
+    box-shadow: inset 0 0 0 1px rgba(36, 215, 255, 0.2);
+  }
+
+  .quote__option input:checked + label small {
+    color: var(--cyan-bright);
+  }
+
+  .quote__option input:focus-visible + label {
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
+  }
+
+  .quote__field {
+    padding: 0.85rem 1.15rem 0;
+  }
+
+  .quote__field label {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.35rem;
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .quote__field label span {
+    font-weight: 400;
+    opacity: 0.7;
+  }
+
+  .quote__field input {
+    width: 100%;
+    min-height: 2.9rem;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: rgba(4, 7, 13, 0.55);
+    color: var(--text);
+    font-size: 0.9rem;
+    transition: border-color var(--t);
+  }
+
+  .quote__field input::placeholder {
+    color: #6f8497;
+  }
+
+  .quote__field input:focus-visible {
+    border-color: var(--cyan);
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
+  }
+
+  .quote__estimate {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1rem 1.15rem 0;
+    padding-top: 0.9rem;
+    border-top: 1px dashed var(--line);
+  }
+
+  .quote__estimate-label span {
+    display: block;
+    color: var(--muted);
+    font-size: 0.75rem;
+  }
+
+  .quote__estimate-label small {
+    display: block;
+    margin-top: 0.1rem;
+    color: var(--muted);
+    font-size: 0.65rem;
+    opacity: 0.8;
+  }
+
+  .quote__estimate strong {
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 6vw, 2.7rem);
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .quote__estimate.is-custom strong {
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+  }
+
+  .quote__cta {
+    width: calc(100% - 2.3rem);
+    margin: 1rem 1.15rem 0;
+  }
+
+  .quote__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.7rem 1.15rem 1.1rem;
+  }
+
+  .quote__copy {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 2.75rem;
+    padding: 0.35rem 0;
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 0.72rem;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color var(--t);
+  }
+
+  .quote__copy:hover {
+    color: var(--cyan-bright);
+  }
+
+  .quote__note {
+    max-width: 22ch;
+    color: var(--muted);
+    font-size: 0.65rem;
+    line-height: 1.4;
+    text-align: right;
+  }
+
+  .quote__feedback {
+    display: none;
+    margin: 0 1.15rem 1rem;
+    padding: 0.5rem 0.65rem;
+    border: 1px solid rgba(37, 211, 102, 0.3);
+    border-radius: 8px;
+    background: rgba(37, 211, 102, 0.08);
+    color: #b8ffd1;
+    font-size: 0.72rem;
+  }
+
+  .quote__feedback.is-visible {
+    display: block;
+  }
+
+  @media (max-width: 30rem) {
+    .quote__top {
+      padding-inline: 1rem;
+    }
+
+    .quote__status {
+      font-size: 0.64rem;
+    }
+
+    .quote__diagram {
+      padding-inline: 0.5rem;
+    }
+
+    .quote__fieldset,
+    .quote__field {
+      padding-inline: 1rem;
+    }
+
+    .quote__estimate {
+      margin-inline: 1rem;
+    }
+
+    .quote__cta {
+      width: calc(100% - 2rem);
+      margin-inline: 1rem;
+    }
+
+    .quote__bottom {
+      padding-inline: 1rem;
+    }
+
+    .quote__note {
+      font-size: 0.62rem;
+    }
+  }
+</style>
+
+<script>
+  const card = document.querySelector('[data-quote-card]');
+
+  if (card) {
+    const radios = Array.from(card.querySelectorAll('input[name="problema"]')) as HTMLInputElement[];
+    const diagram = card.querySelector('.quote__diagram') as HTMLElement;
+    const price = card.querySelector('[data-price]') as HTMLElement;
+    const note = card.querySelector('[data-price-note]') as HTMLElement;
+    const estimate = card.querySelector('[data-estimate]') as HTMLElement;
+    const model = card.querySelector('#modelo') as HTMLInputElement;
+    const copyButton = card.querySelector('[data-copy]') as HTMLButtonElement;
+    const feedback = card.querySelector('[data-feedback]') as HTMLElement;
+    const cta = card.querySelector('[data-cta]') as HTMLAnchorElement;
+    const whatsappBase = (card as HTMLElement).dataset.whatsapp ?? 'https://wa.me/5551900000000';
+
+    let feedbackTimer: ReturnType<typeof setTimeout> | undefined;
+
+    const selected = () => radios.find((radio) => radio.checked) ?? radios[0];
+
+    const buildMessage = () => {
+      const radio = selected();
+      const aparelho = model.value.trim() || 'celular';
+      const preco =
+        radio.dataset.hasPrice === 'true'
+          ? ` Vi no site que o serviço começa em ${radio.dataset.priceLabel}.`
+          : '';
+
+      return `Olá! Meu ${aparelho} está com ${radio.dataset.label}.${preco} Pode me passar o orçamento?`;
+    };
+
+    const update = () => {
+      const radio = selected();
+      diagram.dataset.part = radio.value;
+      price.textContent = radio.dataset.priceLabel ?? 'Sob orçamento';
+
+      const hasPrice = radio.dataset.hasPrice === 'true';
+      note.textContent = hasPrice ? 'a partir de' : 'valor avaliado no atendimento';
+      estimate.classList.toggle('is-custom', !hasPrice);
+
+      cta.href = `${whatsappBase}?text=${encodeURIComponent(buildMessage())}`;
+    };
+
+    radios.forEach((radio) => radio.addEventListener('change', update));
+    model.addEventListener('input', update);
+    update();
+
+    const showFeedback = (text: string) => {
+      feedback.textContent = text;
+      feedback.classList.add('is-visible');
+      window.clearTimeout(feedbackTimer);
+      feedbackTimer = window.setTimeout(() => feedback.classList.remove('is-visible'), 4000);
+    };
+
+    const copySummary = async () => {
+      const text = buildMessage();
+
+      try {
+        await navigator.clipboard.writeText(text);
+        showFeedback('Resumo copiado. É só colar no WhatsApp.');
+      } catch {
+        const area = document.createElement('textarea');
+        area.value = text;
+        area.setAttribute('readonly', '');
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+
+        try {
+          document.execCommand('copy');
+          showFeedback('Resumo copiado. É só colar no WhatsApp.');
+        } catch {
+          showFeedback('Não foi possível copiar. Escreva o modelo direto no WhatsApp.');
+        }
+
+        document.body.removeChild(area);
+      }
+    };
+
+    copyButton.addEventListener('click', copySummary);
+  }
+</script>

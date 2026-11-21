@@ -1,0 +1,1586 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import QuoteCard from '../components/QuoteCard.astro';
+import {
+  negocio,
+  servicos,
+  outrosServicos,
+  faq,
+  garantia,
+  whatsappLink,
+} from '../data/negocio.js';
+---
+
+<BaseLayout title="Conserto de celular em Canoas">
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="topo">
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <p class="hero__kicker">
+          <span class="hero__dot" aria-hidden="true"></span>
+          Assistência técnica de celulares · Canoas/RS
+        </p>
+
+        <h1>Conserto de celular em Canoas, no mesmo dia.</h1>
+
+        <p class="hero__lead">
+          Tela, bateria e conector com peça de qualidade e 90 dias de garantia.
+          A gente busca e devolve seu aparelho em Porto Alegre, Canoas e região.
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#orcamento">Pedir orçamento</a>
+          <a
+            class="btn btn--whatsapp"
+            href={whatsappLink('Olá! Vi o site da Nexo Tech e quero um orçamento.')}
+            target="_blank"
+            rel="noopener"
+          >
+            <Icon name="whatsapp" size={19} />
+            Chamar no WhatsApp
+          </a>
+        </div>
+
+        <ul class="hero__facts">
+          <li>
+            <span class="hero__fact-icon"><Icon name="shield" size={22} /></span>
+            <div>
+              <strong>90 dias</strong>
+              <span>de garantia</span>
+            </div>
+          </li>
+          <li>
+            <span class="hero__fact-icon"><Icon name="clock" size={22} /></span>
+            <div>
+              <strong>Mesmo dia</strong>
+              <span>na maioria dos casos</span>
+            </div>
+          </li>
+          <li>
+            <span class="hero__fact-icon"><Icon name="route" size={22} /></span>
+            <div>
+              <strong>Tele-busca</strong>
+              <span>grátis na região</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="hero__card">
+        <QuoteCard />
+      </div>
+    </div>
+
+    <div class="container hero__brands">
+      <span>Atendemos</span>
+      <ul>
+        {negocio.marcas.map((marca) => <li>{marca}</li>)}
+        <li>e outras</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== Serviços e preços ===== -->
+  <section class="services" id="servicos">
+    <div class="container">
+      <div class="services__head">
+        <div>
+          <p class="services__label">Serviços e preços</p>
+          <h2>Tela, bateria e conector. Preço claro, sem surpresa.</h2>
+        </div>
+        <span class="services__stamp" aria-hidden="true">
+          <strong>90</strong>
+          <small>dias<br />de garantia</small>
+        </span>
+      </div>
+
+      <p class="services__lead">
+        Os três consertos mais pedidos, com valor inicial publicado. O valor
+        final é confirmado pelo WhatsApp, antes de qualquer reparo.
+      </p>
+
+      <ul class="price-list">
+        {servicos.map((servico) => (
+          <li class="price-row">
+            <div class="price-row__main">
+              <span class="price-row__icon">
+                <Icon name={servico.icone} size={22} />
+              </span>
+              <div>
+                <h3>{servico.nome}</h3>
+                <p>{servico.descricao}</p>
+              </div>
+            </div>
+            <div class="price-row__value">
+              <span>a partir de</span>
+              <strong>R$ {servico.preco}</strong>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <div class="services__more">
+        <div>
+          <h3>Também cuidamos de</h3>
+          <p>Outros reparos entram no orçamento depois da avaliação.</p>
+        </div>
+        <ul>
+          {outrosServicos.map((servico) => (
+            <li>
+              <strong>{servico.nome}</strong>
+              <span>sob orçamento</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="services__foot">
+        <p class="services__fine">
+          Valores “a partir de”. O preço final varia conforme o modelo do
+          aparelho e a peça disponível. Consertos no mesmo dia.
+        </p>
+        <a
+          class="btn btn--ink"
+          href={whatsappLink('Olá! Quero um orçamento de conserto de celular.')}
+          target="_blank"
+          rel="noopener"
+        >
+          <Icon name="whatsapp" size={18} />
+          Pedir orçamento
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Como funciona ===== -->
+  <section class="process section" id="como-funciona">
+    <div class="container">
+      <div class="section-head">
+        <h2>Da primeira mensagem ao celular na sua mão.</h2>
+        <p>
+          Sem burocracia: você fala com a gente, a gente busca o aparelho e
+          devolve funcionando.
+        </p>
+      </div>
+
+      <ol class="steps">
+        <li class="step">
+          <span class="step__num">01</span>
+          <h3>Manda o modelo e o problema</h3>
+          <p>Você chama no WhatsApp e já recebe uma estimativa.</p>
+          <span class="step__tag">sem compromisso</span>
+        </li>
+        <li class="step">
+          <span class="step__num">02</span>
+          <h3>A gente busca</h3>
+          <p>
+            Tele-busca grátis em Canoas, Porto Alegre e região. Ou você entrega
+            no endereço.
+          </p>
+          <span class="step__tag">grátis</span>
+        </li>
+        <li class="step">
+          <span class="step__num">03</span>
+          <h3>Orçamento aprovado</h3>
+          <p>Diagnóstico e valor final antes de mexer no aparelho.</p>
+          <span class="step__tag">antes do reparo</span>
+        </li>
+        <li class="step">
+          <span class="step__num">04</span>
+          <h3>Conserto e teste</h3>
+          <p>Reparo no mesmo dia e testes antes da devolução.</p>
+          <span class="step__tag">mesmo dia</span>
+        </li>
+      </ol>
+
+      <aside class="process__note">
+        <span class="process__note-icon"><Icon name="lock" size={18} /></span>
+        <p>
+          Seu aparelho tem senha? Informe no atendimento para testarmos tudo
+          antes de devolver.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== Garantia ===== -->
+  <section class="warranty" id="garantia">
+    <div class="container warranty__grid">
+      <div class="warranty__seal" aria-hidden="true">
+        <span class="warranty__num">90</span>
+        <span class="warranty__unit">dias</span>
+        <span class="warranty__seal-label">de garantia</span>
+      </div>
+
+      <div class="warranty__body">
+        <h2>Conserto bom é o que não volta.</h2>
+        <p>
+          A Nexo Tech oferece 90 dias de garantia para os serviços
+          realizados, contados a partir da data do atendimento. A cobertura vale
+          para defeitos relacionados ao serviço ou à peça substituída, desde que
+          não haja sinais de mau uso.
+        </p>
+
+        <div class="warranty__cols">
+          <div class="warranty__col">
+            <h3>Está coberto</h3>
+            <ul>
+              {garantia.cobertura.map((item) => (
+                <li>
+                  <span class="warranty__icon warranty__icon--check">
+                    <Icon name="check" size={16} />
+                  </span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="warranty__col">
+            <h3>Não está coberto</h3>
+            <ul>
+              {garantia.naoCoberto.map((item) => (
+                <li>
+                  <span class="warranty__icon warranty__icon--x">
+                    <Icon name="x" size={16} />
+                  </span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <p class="warranty__alert">
+          <span class="warranty__alert-icon"><Icon name="shield" size={19} /></span>
+          <span>
+            <strong>Tela trocada:</strong> a garantia só vale com película de
+            proteção.
+          </span>
+        </p>
+
+        <details class="terms">
+          <summary>Ler o termo de garantia completo</summary>
+          <div class="terms__body">
+            <div>
+              <h4>Cobertura da garantia</h4>
+              <ul>
+                {garantia.cobertura.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+            <div>
+              <h4>Condições para troca de telas</h4>
+              <ul>
+                {garantia.tela.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+            <div>
+              <h4>Situações não cobertas</h4>
+              <ul>
+                {garantia.naoCoberto.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+            <div>
+              <h4>Solicitação da garantia</h4>
+              <ul>
+                {garantia.solicitacao.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Assinatura da marca ===== -->
+  <section class="statement" aria-label="Compromisso da Nexo Tech">
+    <div class="container statement__inner">
+      <p class="statement__text">Conserto certo, na primeira.</p>
+      <a
+        class="statement__link"
+        href={negocio.instagramUrl}
+        target="_blank"
+        rel="noopener"
+      >
+        Ver feedbacks no Instagram
+        <Icon name="arrow" size={18} />
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== Compra, venda e troca ===== -->
+  <section class="store section" id="loja">
+    <div class="container store__grid">
+      <div>
+        <h2>Também tem aparelho e acessório pra sair daqui.</h2>
+        <p>
+          A Nexo Tech compra, vende e troca celulares, além de trabalhar
+          com acessórios. O estoque muda todo dia — chama no WhatsApp para ver
+          o que tem disponível.
+        </p>
+        <div class="store__actions">
+          <a
+            class="btn btn--primary"
+            href={whatsappLink('Olá! Quero ver os aparelhos e acessórios disponíveis.')}
+            target="_blank"
+            rel="noopener"
+          >
+            <Icon name="whatsapp" size={19} />
+            Ver disponibilidade
+          </a>
+          <a
+            class="btn btn--ghost"
+            href={negocio.instagramUrl}
+            target="_blank"
+            rel="noopener"
+          >
+            <Icon name="instagram" size={18} />
+            Acompanhar no Instagram
+          </a>
+        </div>
+      </div>
+
+      <ul class="store__list">
+        <li>
+          <span class="store__list-icon"><Icon name="tag" size={22} /></span>
+          <div>
+            <strong>Compra e troca</strong>
+            <span>Avaliamos o seu aparelho usado.</span>
+          </div>
+        </li>
+        <li>
+          <span class="store__list-icon"><Icon name="screen" size={22} /></span>
+          <div>
+            <strong>Aparelhos para venda</strong>
+            <span>Modelos e condições pelo WhatsApp.</span>
+          </div>
+        </li>
+        <li>
+          <span class="store__list-icon"><Icon name="plug" size={22} /></span>
+          <div>
+            <strong>Acessórios</strong>
+            <span>Consulte o que está disponível.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== Onde estamos ===== -->
+  <section class="location section" id="onde-estamos">
+    <div class="container location__grid">
+      <div class="location__info">
+        <h2>Perto de você, em Canoas.</h2>
+        <address>
+          {negocio.endereco}<br />
+          {negocio.bairro}<br />
+          {negocio.cidade}/{negocio.estado} · {negocio.cep}
+        </address>
+        <p class="location__note">
+          Atendimento com horário combinado pelo WhatsApp. A tele-busca é
+          grátis em Porto Alegre, Canoas e região.
+        </p>
+        <p class="location__phone">
+          <Icon name="phone" size={17} />
+          <a href={negocio.telefoneLink}>{negocio.telefoneDisplay}</a>
+        </p>
+        <div class="location__actions">
+          <a
+            class="btn btn--primary"
+            href={negocio.googleMapsUrl}
+            target="_blank"
+            rel="noopener"
+          >
+            <Icon name="pin" size={18} />
+            Abrir no Maps
+          </a>
+          <a
+            class="btn btn--ghost"
+            href={whatsappLink('Olá! Quero combinar um atendimento e a tele-busca.')}
+            target="_blank"
+            rel="noopener"
+          >
+            <Icon name="whatsapp" size={18} />
+            Combinar atendimento
+          </a>
+        </div>
+        <ul class="coverage" aria-label="Regiões atendidas">
+          {negocio.cobertura.map((regiao) => <li>{regiao}</li>)}
+        </ul>
+      </div>
+
+      <div class="location__map">
+        <div class="location__map-fallback" aria-hidden="true">
+          <span class="location__map-pin"><Icon name="pin" size={22} /></span>
+          <p>Rua das Araucárias, 210<br />Centro · Canoas/RS</p>
+        </div>
+        <iframe
+          src={negocio.googleMapsEmbed}
+          title="Mapa da Nexo Tech em Canoas"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Dúvidas ===== -->
+  <section class="faq section" id="duvidas">
+    <div class="container faq__grid">
+      <div class="faq__head">
+        <h2>Antes de mandar o aparelho.</h2>
+        <p>
+          As respostas para o que mais perguntam no WhatsApp. Se a sua dúvida
+          não estiver aqui, é só chamar.
+        </p>
+        <a
+          class="link faq__link"
+          href={whatsappLink('Olá! Tenho uma dúvida sobre o conserto.')}
+          target="_blank"
+          rel="noopener"
+        >
+          Falar com a Nexo Tech
+          <Icon name="arrow" size={17} />
+        </a>
+      </div>
+
+      <div class="faq__list">
+        {faq.map((item) => (
+          <details>
+            <summary>{item.pergunta}</summary>
+            <p>{item.resposta}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ===== Hero ===== */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-top: clamp(2.5rem, 6vw, 4.5rem);
+    padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
+    background:
+      radial-gradient(55% 70% at 82% 8%, rgba(11, 125, 255, 0.22), transparent 65%),
+      radial-gradient(40% 50% at 10% 50%, rgba(36, 215, 255, 0.06), transparent 70%),
+      var(--ink);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(139, 195, 245, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139, 195, 245, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 88%);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 88%);
+  }
+
+  .hero__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+
+  .hero__copy {
+    max-width: 40rem;
+  }
+
+  .hero__kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 1.2rem;
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+
+  .hero__dot {
+    flex: 0 0 auto;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 10px var(--cyan);
+  }
+
+  .hero h1 {
+    max-width: 14ch;
+    font-size: clamp(2.45rem, 5.9vw, 5rem);
+    font-stretch: 104%;
+    letter-spacing: -0.04em;
+    line-height: 0.97;
+  }
+
+  .hero__lead {
+    max-width: 52ch;
+    margin-top: 1.4rem;
+    color: var(--muted);
+    font-size: clamp(1rem, 1.5vw, 1.12rem);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.8rem;
+  }
+
+  .hero__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem 1.5rem;
+    margin-top: 2rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .hero__facts li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+    line-height: 1.3;
+  }
+
+  .hero__fact-icon {
+    display: inline-flex;
+    flex: 0 0 auto;
+    color: var(--cyan);
+  }
+
+  .hero__facts strong {
+    display: block;
+    color: var(--text);
+    font-size: 0.86rem;
+    font-weight: 600;
+  }
+
+  .hero__facts span {
+    display: block;
+    font-size: 0.72rem;
+  }
+
+  .hero__card {
+    min-width: 0;
+  }
+
+  .hero__brands {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 1.2rem;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.72rem;
+  }
+
+  .hero__brands > span {
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero__brands ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.3rem;
+  }
+
+  .hero__brands li {
+    color: var(--text);
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .hero__brands li:last-child {
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  /* ===== Serviços ===== */
+  .services {
+    position: relative;
+    background: var(--paper);
+    color: var(--paper-ink);
+    padding-block: clamp(4rem, 8vw, 6.5rem);
+  }
+
+  .services::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blue-deep), var(--cyan));
+  }
+
+  .services :focus-visible {
+    outline-color: var(--blue-deep);
+  }
+
+  .services__head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .services__label {
+    margin-bottom: 0.8rem;
+    color: var(--blue-deep);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+
+  .services h2 {
+    max-width: 20ch;
+    font-size: clamp(2.1rem, 4.6vw, 3.6rem);
+    letter-spacing: -0.04em;
+  }
+
+  .services__stamp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 7rem;
+    height: 7rem;
+    border: 1px solid rgba(7, 18, 28, 0.25);
+    border-radius: 50%;
+    background: var(--paper-2);
+    color: var(--blue-deep);
+    text-align: center;
+    transform: rotate(6deg);
+  }
+
+  .services__stamp strong {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 0.85;
+  }
+
+  .services__stamp small {
+    margin-top: 0.35rem;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+
+  .services__lead {
+    max-width: 58ch;
+    margin-top: 1.2rem;
+    color: var(--paper-muted);
+    font-size: 1.05rem;
+  }
+
+  .price-list {
+    margin-top: clamp(2.5rem, 5vw, 3.75rem);
+    border-top: 1px solid var(--paper-line);
+  }
+
+  .price-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem 2rem;
+    align-items: center;
+    padding-block: 1.6rem;
+    border-bottom: 1px solid var(--paper-line);
+  }
+
+  .price-row__main {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .price-row__icon {
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--paper-line);
+    border-radius: 50%;
+    color: var(--blue-deep);
+  }
+
+  .price-row h3 {
+    font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+    letter-spacing: -0.02em;
+  }
+
+  .price-row p {
+    max-width: 46ch;
+    margin-top: 0.25rem;
+    color: var(--paper-muted);
+    font-size: 0.95rem;
+  }
+
+  .price-row__value {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    text-align: right;
+  }
+
+  .price-row__value span {
+    color: var(--paper-muted);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .price-row__value strong {
+    color: var(--paper-ink);
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+    font-variant-numeric: tabular-nums;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .services__more {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px dashed var(--paper-line);
+  }
+
+  .services__more h3 {
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .services__more > div p {
+    max-width: 32ch;
+    margin-top: 0.4rem;
+    color: var(--paper-muted);
+    font-size: 0.9rem;
+  }
+
+  .services__more ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem 2rem;
+  }
+
+  .services__more li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 1px solid var(--paper-line);
+  }
+
+  .services__more strong {
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .services__more li span {
+    flex: 0 0 auto;
+    color: var(--paper-muted);
+    font-size: 0.72rem;
+  }
+
+  .services__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .services__fine {
+    max-width: 56ch;
+    color: var(--paper-muted);
+    font-size: 0.78rem;
+    line-height: 1.55;
+  }
+
+  /* ===== Como funciona ===== */
+  .process {
+    border-top: 1px solid var(--line);
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line);
+  }
+
+  .step {
+    position: relative;
+    padding: 2rem 1.5rem 0 0;
+  }
+
+  .step::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 0 4px var(--ink), 0 0 12px rgba(36, 215, 255, 0.6);
+  }
+
+  .step__num {
+    color: var(--cyan);
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  .step h3 {
+    margin-top: 0.55rem;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+  }
+
+  .step p {
+    max-width: 30ch;
+    margin-top: 0.55rem;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .step__tag {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.2rem 0.55rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--text);
+    font-size: 0.7rem;
+  }
+
+  .process__note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    max-width: 52rem;
+    margin-top: 3rem;
+    padding: 1rem 1.2rem;
+    border-left: 2px solid var(--cyan);
+    background: rgba(36, 215, 255, 0.05);
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .process__note-icon {
+    display: inline-flex;
+    flex: 0 0 auto;
+    color: var(--cyan);
+  }
+
+  /* ===== Garantia ===== */
+  .warranty {
+    padding-block: var(--section);
+    border-block: 1px solid var(--line);
+    background: var(--ink-2);
+  }
+
+  .warranty__grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: center;
+  }
+
+  .warranty__seal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    width: min(100%, 20rem);
+    aspect-ratio: 1;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 30%, rgba(11, 125, 255, 0.18), transparent 65%);
+  }
+
+  .warranty__seal::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px dashed rgba(139, 205, 255, 0.25);
+    border-radius: 50%;
+  }
+
+  .warranty__num {
+    background: linear-gradient(180deg, #ffffff 0%, #7deaff 52%, #0b7dff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 11vw, 8.5rem);
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    line-height: 0.8;
+  }
+
+  .warranty__unit {
+    margin-top: 0.6rem;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .warranty__seal-label {
+    margin-top: 0.3rem;
+    color: var(--muted);
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .warranty__body h2 {
+    max-width: 18ch;
+    font-size: clamp(2rem, 4.2vw, 3.2rem);
+  }
+
+  .warranty__body > p {
+    max-width: 58ch;
+    margin-top: 1.1rem;
+    color: var(--muted);
+  }
+
+  .warranty__cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .warranty__col h3 {
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-stretch: normal;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .warranty__col ul {
+    display: grid;
+    gap: 0.55rem;
+    margin-top: 0.8rem;
+  }
+
+  .warranty__col li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .warranty__icon {
+    display: inline-flex;
+    flex: 0 0 auto;
+    margin-top: 0.2rem;
+  }
+
+  .warranty__icon--check {
+    color: var(--cyan);
+  }
+
+  .warranty__icon--x {
+    color: var(--danger);
+  }
+
+  .warranty__alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    margin-top: 1.5rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(255, 176, 32, 0.3);
+    background: rgba(255, 176, 32, 0.07);
+    color: var(--amber-soft);
+    font-size: 0.88rem;
+  }
+
+  .warranty__alert-icon {
+    display: inline-flex;
+    flex: 0 0 auto;
+    color: var(--amber);
+  }
+
+  .terms {
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .terms summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 3.25rem;
+    padding-block: 0.9rem;
+    color: var(--text);
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+  }
+
+  .terms summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .terms summary::after {
+    content: '+';
+    color: var(--cyan);
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .terms[open] summary::after {
+    content: '−';
+  }
+
+  .terms__body {
+    display: grid;
+    gap: 1.1rem;
+    padding-bottom: 1.2rem;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  .terms__body h4 {
+    margin-bottom: 0.4rem;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-stretch: normal;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .terms__body ul {
+    display: grid;
+    gap: 0.3rem;
+    padding-left: 1rem;
+    list-style: disc;
+  }
+
+  /* ===== Assinatura ===== */
+  .statement {
+    background: var(--cyan);
+    color: #031018;
+  }
+
+  .statement__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-block: clamp(2.2rem, 4vw, 3.2rem);
+  }
+
+  .statement__text {
+    max-width: 16ch;
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 4.6vw, 3.8rem);
+    font-stretch: 110%;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.98;
+  }
+
+  .statement__link {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.45rem;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid currentColor;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: gap var(--t);
+  }
+
+  .statement__link:hover {
+    gap: 0.65rem;
+  }
+
+  /* ===== Loja ===== */
+  .store {
+    border-top: 1px solid var(--line);
+  }
+
+  .store__grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+  }
+
+  .store h2 {
+    max-width: 18ch;
+    font-size: clamp(2rem, 4.4vw, 3.4rem);
+  }
+
+  .store p {
+    max-width: 52ch;
+    margin-top: 1.1rem;
+    color: var(--muted);
+  }
+
+  .store__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.6rem;
+  }
+
+  .store__list {
+    border-top: 1px solid var(--line);
+  }
+
+  .store__list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .store__list-icon {
+    display: inline-flex;
+    flex: 0 0 auto;
+    margin-top: 0.15rem;
+    color: var(--cyan);
+  }
+
+  .store__list strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .store__list div span {
+    display: block;
+    margin-top: 0.15rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  /* ===== Localização ===== */
+  .location__grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: stretch;
+  }
+
+  .location h2 {
+    max-width: 14ch;
+    font-size: clamp(2rem, 4.4vw, 3.4rem);
+  }
+
+  .location address {
+    margin-top: 1.5rem;
+    color: var(--text);
+    font-size: 1.05rem;
+    font-style: normal;
+    line-height: 1.7;
+  }
+
+  .location__note {
+    max-width: 44ch;
+    margin-top: 1rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .location__phone {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.85rem;
+    color: var(--cyan);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .location__phone a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    transition: color var(--t);
+  }
+
+  .location__phone a:hover {
+    color: var(--cyan-bright);
+  }
+
+  .location__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.5rem;
+  }
+
+  .coverage {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.6rem;
+  }
+
+  .coverage li {
+    padding: 0.35rem 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+
+  .location__map {
+    position: relative;
+    min-height: 360px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--panel);
+  }
+
+  .location__map-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 2rem;
+    background: radial-gradient(60% 60% at 50% 40%, rgba(11, 125, 255, 0.12), transparent 70%), var(--panel);
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .location__map-pin {
+    display: inline-flex;
+    color: var(--cyan);
+  }
+
+  .location__map iframe {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 360px;
+    border: 0;
+    background: transparent;
+    filter: grayscale(0.15) saturate(0.85);
+  }
+
+  /* ===== Dúvidas ===== */
+  .faq {
+    border-top: 1px solid var(--line);
+  }
+
+  .faq__grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  .faq__head h2 {
+    max-width: 14ch;
+    font-size: clamp(2rem, 4.4vw, 3.4rem);
+  }
+
+  .faq__head p {
+    max-width: 38ch;
+    margin-top: 1rem;
+    color: var(--muted);
+  }
+
+  .faq__link {
+    margin-top: 1.3rem;
+    color: var(--cyan);
+    font-size: 0.9rem;
+  }
+
+  .faq__list {
+    border-top: 1px solid var(--line);
+  }
+
+  .faq details {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .faq summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 3.6rem;
+    padding: 1rem 0;
+    color: var(--text);
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    list-style: none;
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq summary::after {
+    content: '+';
+    flex: 0 0 auto;
+    color: var(--cyan);
+    font-family: var(--font-body);
+    font-size: 1.35rem;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .faq details[open] summary::after {
+    content: '−';
+  }
+
+  .faq details p {
+    max-width: 60ch;
+    padding: 0 2rem 1.2rem 0;
+    color: var(--muted);
+    font-size: 0.93rem;
+  }
+
+  /* ===== Responsivo ===== */
+  @media (max-width: 64rem) {
+    .hero__grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .hero__copy {
+      max-width: none;
+    }
+
+    .hero h1 {
+      max-width: 16ch;
+    }
+
+    .hero__card {
+      width: 100%;
+      max-width: 34rem;
+      margin-inline: auto;
+    }
+
+    .warranty__grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .warranty__seal {
+      width: min(100%, 15rem);
+    }
+
+    .location__grid,
+    .store__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .faq__grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .faq__head h2 {
+      max-width: 18ch;
+    }
+  }
+
+  @media (max-width: 60rem) {
+    .steps {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      border-top: 0;
+    }
+
+    .step {
+      padding-top: 1.6rem;
+      border-top: 1px solid var(--line);
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .services__head {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .services__stamp {
+      display: none;
+    }
+
+    .services__more {
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+    }
+
+    .store__grid {
+      gap: 2.5rem;
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .warranty__cols {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .statement__inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.4rem;
+    }
+
+    .statement__text {
+      max-width: 14ch;
+    }
+  }
+
+  @media (max-width: 36rem) {
+    .steps {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .step {
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .step::before {
+      top: -4px;
+    }
+
+    .price-row {
+      grid-template-columns: 1fr auto;
+      gap: 0.75rem;
+    }
+
+    .price-row__icon {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+
+    .price-row__value strong {
+      font-size: 1.9rem;
+    }
+
+    .services__more ul {
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+    }
+
+    .services__foot {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .services__foot .btn {
+      width: 100%;
+    }
+
+    .location__map,
+    .location__map iframe {
+      min-height: 300px;
+    }
+  }
+
+  @media (max-width: 30rem) {
+    .hero h1 {
+      font-size: clamp(2.3rem, 10vw, 3rem);
+    }
+
+    .hero__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .hero__actions .btn {
+      width: 100%;
+    }
+
+    .hero__facts {
+      gap: 0.8rem 1.1rem;
+    }
+
+    .hero__brands {
+      gap: 0.5rem 1rem;
+    }
+
+    .price-row {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .price-row__value {
+      flex-direction: row;
+      align-items: baseline;
+      gap: 0.5rem;
+      text-align: left;
+    }
+
+    .price-row__value strong {
+      font-size: 1.7rem;
+    }
+
+    .store__actions .btn,
+    .location__actions .btn {
+      width: 100%;
+    }
+  }
+</style>

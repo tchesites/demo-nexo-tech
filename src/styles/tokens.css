@@ -1,0 +1,38 @@
+:root {
+  /* Cores — identidade Nexo Tech */
+  --ink: #04070d;
+  --ink-2: #070d16;
+  --panel: #0b1621;
+  --panel-2: #0e1c2a;
+  --line: rgba(139, 195, 245, 0.14);
+  --line-strong: rgba(139, 205, 255, 0.3);
+  --blue: #0b7dff;
+  --blue-deep: #0756c9;
+  --cyan: #24d7ff;
+  --cyan-bright: #7deaff;
+  --text: #eef6ff;
+  --muted: #9aafc3;
+  --paper: #edf3f8;
+  --paper-2: #f7fafc;
+  --paper-ink: #07121c;
+  --paper-muted: #4e6274;
+  --paper-line: rgba(7, 18, 28, 0.14);
+  --amber: #ffb020;
+  --amber-soft: #ffe0a8;
+  --green: #25d366;
+  --danger: #ff9a9a;
+  --sombra: 0 30px 90px rgba(0, 0, 0, 0.5);
+
+  /* Tipografia */
+  --font-display: 'Archivo', 'Arial Black', system-ui, sans-serif;
+  --font-body: 'Instrument Sans', system-ui, -apple-system, sans-serif;
+
+  /* Layout */
+  --container: 1180px;
+  --gutter: clamp(1.15rem, 4vw, 2rem);
+  --section: clamp(4.5rem, 9vw, 7.5rem);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --t: 180ms var(--ease);
+}

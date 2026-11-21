@@ -1,0 +1,131 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+
+const links = [
+  { href: '#servicos', label: 'Serviços' },
+  { href: '#como-funciona', label: 'Como funciona' },
+  { href: '#garantia', label: 'Garantia' },
+  { href: '#onde-estamos', label: 'Onde estamos' },
+];
+---
+
+<header class="header">
+  <div class="container header__inner">
+    <Logo />
+
+    <nav class="nav" aria-label="Navegação principal">
+      <ul class="nav__list">
+        {links.map((link) => (
+          <li>
+            <a class="nav__link" href={link.href}>{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <a class="btn btn--primary btn--compact header__cta" href="#orcamento">
+      Orçamento
+      <Icon name="arrow" size={16} />
+    </a>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--line);
+    background: rgba(4, 7, 13, 0.86);
+    backdrop-filter: blur(18px);
+  }
+
+  @supports not (backdrop-filter: blur(1px)) {
+    .header {
+      background: var(--ink);
+    }
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+    padding-block: 0.8rem;
+  }
+
+  .nav {
+    margin-left: auto;
+  }
+
+  .nav__list {
+    display: flex;
+    align-items: center;
+    gap: 1.45rem;
+  }
+
+  .nav__link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color var(--t);
+  }
+
+  .nav__link::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0.45rem;
+    left: 0;
+    height: 1px;
+    background: var(--cyan);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--t);
+  }
+
+  .nav__link:hover {
+    color: var(--text);
+  }
+
+  .nav__link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .header__cta {
+    margin-left: 0.2rem;
+    min-height: 2.75rem;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 70rem) {
+    .nav {
+      display: none;
+    }
+
+    .header__cta {
+      margin-left: auto;
+    }
+  }
+
+  @media (max-width: 26rem) {
+    .header__inner {
+      gap: 0.75rem;
+    }
+
+    .header__cta {
+      padding-inline: 0.72rem;
+      font-size: 0.82rem;
+    }
+  }
+
+  @media (max-width: 22rem) {
+    .header__cta :global(svg) {
+      display: none;
+    }
+  }
+</style>
